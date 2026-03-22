@@ -4,6 +4,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using Punto_Fijo_1.controlador;
 using Punto_Fijo_1.modelo;
+using Punto_Fijo_1.vista;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,19 +16,12 @@ namespace Punto_Fijo_1
     {
         private punto_fijo_controlador _controlador;
 
-        // Panel despeje inline
-        private Panel _panelDespeje;
-        private ListBox _listaCandidatos;
-        private RichTextBox _rtbPreview;
-        private List<string[]> _candidatosActuales = new List<string[]>();
-
         public metodo_punto_fijo()
         {
             InitializeComponent();
             _controlador = new punto_fijo_controlador();
             ConfigurarTabla();
             ConfigurarValoresPorDefecto();
-            CrearPanelDespeje();
         }
 
         // ═══════════════════════════════════════════════════════════
@@ -58,109 +52,7 @@ namespace Punto_Fijo_1
         }
 
         // ═══════════════════════════════════════════════════════════
-        // PANEL DESPEJE INLINE
-        // ═══════════════════════════════════════════════════════════
-
-        private void CrearPanelDespeje()
-        {
-            // Contenedor principal del panel
-            _panelDespeje = new Panel
-            {
-                Visible = false,
-                BackColor = Color.FromArgb(26, 26, 46),
-                BorderStyle = BorderStyle.FixedSingle,
-                Padding = new Padding(6),
-                Height = 230,
-                Dock = DockStyle.None
-            };
-
-            // — Título —
-            var lblTitulo = new Label
-            {
-                Text = "⚡ Candidatos g(x)  —  click para previsualizar",
-                Dock = DockStyle.Top,
-                Height = 22,
-                ForeColor = Color.FromArgb(86, 156, 214),
-                Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                TextAlign = ContentAlignment.MiddleLeft
-            };
-
-            // — Lista de candidatos —
-            _listaCandidatos = new ListBox
-            {
-                Dock = DockStyle.Top,
-                Height = 72,
-                BackColor = Color.FromArgb(37, 37, 64),
-                ForeColor = Color.FromArgb(78, 201, 176),
-                Font = new Font("Consolas", 9),
-                BorderStyle = BorderStyle.None
-            };
-            _listaCandidatos.SelectedIndexChanged += ListaCandidatos_SelectedIndexChanged;
-
-            // — Preview de iteraciones —
-            _rtbPreview = new RichTextBox
-            {
-                Dock = DockStyle.Top,
-                Height = 90,
-                BackColor = Color.FromArgb(26, 45, 26),
-                ForeColor = Color.FromArgb(106, 153, 85),
-                Font = new Font("Consolas", 9),
-                ReadOnly = true,
-                BorderStyle = BorderStyle.None,
-                Text = "  ← Selecciona un candidato"
-            };
-
-            // — Botones —
-            var panelBtns = new FlowLayoutPanel
-            {
-                Dock = DockStyle.Top,
-                Height = 34,
-                BackColor = Color.Transparent,
-                Padding = new Padding(0, 3, 0, 0)
-            };
-
-            var btnUsar = new Button
-            {
-                Text = "Usar este despeje ↓",
-                Width = 148,
-                Height = 26,
-                BackColor = Color.FromArgb(0, 122, 204),
-                ForeColor = Color.White,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 8)
-            };
-            btnUsar.FlatAppearance.BorderSize = 0;
-            btnUsar.Click += BtnUsarDespeje_Click;
-
-            var btnX = new Button
-            {
-                Text = "× Cerrar",
-                Width = 64,
-                Height = 26,
-                BackColor = Color.FromArgb(58, 58, 58),
-                ForeColor = Color.FromArgb(180, 180, 180),
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 8)
-            };
-            btnX.FlatAppearance.BorderSize = 0;
-            btnX.Click += (s, e) => _panelDespeje.Visible = false;
-
-            panelBtns.Controls.Add(btnUsar);
-            panelBtns.Controls.Add(btnX);
-
-            // Agregar en orden inverso (Dock=Top apila de abajo hacia arriba)
-            _panelDespeje.Controls.Add(panelBtns);
-            _panelDespeje.Controls.Add(_rtbPreview);
-            _panelDespeje.Controls.Add(_listaCandidatos);
-            _panelDespeje.Controls.Add(lblTitulo);
-
-            // Insertar en el panel izquierdo del SplitContainer
-            // IMPORTANTE: cambia "splitContainer1" si tu split tiene otro nombre
-            splitContainer1.Panel1.Controls.Add(_panelDespeje);
-        }
-
-        // ═══════════════════════════════════════════════════════════
-        // BOTÓN DESPEJE AUTOMÁTICO
+        // BOTÓN AUTO DESPEJE — abre FormAutoDespeje
         // ═══════════════════════════════════════════════════════════
 
         private void btnDespeje_Click(object sender, EventArgs e)
@@ -174,108 +66,22 @@ namespace Punto_Fijo_1
 
             double.TryParse(txtX0.Text, out double x0);
 
-            // Generar candidatos desde el controlador
             string mejor = _controlador.GenerarDespeje(
                 txtFuncion.Text.Trim(), x0,
-                out _candidatosActuales
+                out List<string[]> candidatos
             );
 
-            // Llenar la lista
-            _listaCandidatos.Items.Clear();
-            foreach (var c in _candidatosActuales)
-                _listaCandidatos.Items.Add(c[0]);
-
-            // Seleccionar el mejor automáticamente
-            int idx = _candidatosActuales.FindIndex(c => c[0] == mejor);
-            if (idx >= 0) _listaCandidatos.SelectedIndex = idx;
-            else if (_listaCandidatos.Items.Count > 0)
-                _listaCandidatos.SelectedIndex = 0;
-
-            // Posicionar debajo del botón despeje
-            _panelDespeje.Location = new Point(
-                btnDespeje.Left,
-                btnDespeje.Bottom + 4
-            );
-            _panelDespeje.Width = splitContainer1.Panel1.Width - 20;
-            _panelDespeje.Visible = true;
-            _panelDespeje.BringToFront();
-        }
-
-        // ═══════════════════════════════════════════════════════════
-        // PREVIEW AL SELECCIONAR CANDIDATO
-        // ═══════════════════════════════════════════════════════════
-
-        private void ListaCandidatos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_listaCandidatos.SelectedItem == null) return;
-
-            string gx = _listaCandidatos.SelectedItem.ToString();
-            double.TryParse(txtX0.Text, out double x0);
-
-            _rtbPreview.Clear();
-
-            try
+            if (candidatos == null || candidatos.Count == 0)
             {
-                double xi = x0 == 0 ? 0.0001 : x0; // evitar división por 0
-                bool converge = false;
-
-                for (int i = 1; i <= 8; i++)
-                {
-                    var arg = new Argument("x", xi);
-                    var expr = new Expression(gx, arg);
-                    double sig = expr.calculate();
-
-                    if (double.IsNaN(sig) || double.IsInfinity(sig))
-                    {
-                        _rtbPreview.ForeColor = Color.FromArgb(200, 80, 30);
-                        _rtbPreview.Text = "⚠ Diverge — no converge desde X₀=" + x0;
-                        return;
-                    }
-
-                    double err = xi != 0
-                        ? Math.Abs((sig - xi) / sig) * 100
-                        : Math.Abs(sig - xi) * 100;
-
-                    converge = err < 1.0;
-
-                    int ini = _rtbPreview.TextLength;
-                    string lin = $"  i={i}  xᵢ={sig:F6}   err={err:F3}%{(converge ? " ✓" : "")}\n";
-                    _rtbPreview.AppendText(lin);
-
-                    if (converge)
-                    {
-                        _rtbPreview.Select(ini, lin.Length - 1);
-                        _rtbPreview.SelectionColor = Color.FromArgb(106, 200, 85);
-                        _rtbPreview.SelectionFont = new Font("Consolas", 9, FontStyle.Bold);
-                    }
-
-                    // Reset color
-                    _rtbPreview.Select(_rtbPreview.TextLength, 0);
-                    _rtbPreview.SelectionColor = Color.FromArgb(106, 153, 85);
-                    _rtbPreview.SelectionFont = new Font("Consolas", 9);
-
-                    xi = sig;
-                    if (converge) break;
-                }
-
-                if (!converge)
-                    _rtbPreview.AppendText("  → puede converger con más iteraciones\n");
+                MessageBox.Show("No se pudieron generar candidatos para esta función.",
+                    "Sin candidatos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            catch
-            {
-                _rtbPreview.Text = "⚠ Error al evaluar g(x)";
-            }
-        }
 
-        // ═══════════════════════════════════════════════════════════
-        // BOTÓN "USAR ESTE DESPEJE"
-        // ═══════════════════════════════════════════════════════════
+            var formDespeje = new FormAutoDespeje(candidatos, mejor, txtFuncion.Text.Trim(), x0);
 
-        private void BtnUsarDespeje_Click(object sender, EventArgs e)
-        {
-            if (_listaCandidatos.SelectedItem == null) return;
-            txtDespeje.Text = _listaCandidatos.SelectedItem.ToString();
-            _panelDespeje.Visible = false;
+            if (formDespeje.ShowDialog(this) == DialogResult.OK)
+                txtDespeje.Text = formDespeje.DespejElegido;
         }
 
         // ═══════════════════════════════════════════════════════════
@@ -329,7 +135,7 @@ namespace Punto_Fijo_1
 
             foreach (IteracionData iter in _controlador.ObtenerIteraciones())
             {
-                string errStr = iter.Iteracion == 0 ? "—" : $"{iter.Error:F4} %";
+                string errStr = $"{iter.Error:F4} %";
                 int fila = dataGridView1.Rows.Add(
                     iter.Iteracion,
                     iter.Xi.ToString("F6"),
@@ -381,7 +187,6 @@ namespace Punto_Fijo_1
             dataGridView1.Rows.Clear();
             plotView1.Model = null;
             lblResultado.Text = "";
-            _panelDespeje.Visible = false;
             ConfigurarValoresPorDefecto();
             txtFuncion.Focus();
         }

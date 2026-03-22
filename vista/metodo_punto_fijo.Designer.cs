@@ -92,9 +92,9 @@
             // btnDespeje
             // 
             btnDespeje.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnDespeje.Location = new Point(192, 35);
+            btnDespeje.Location = new Point(22, 80);
             btnDespeje.Name = "btnDespeje";
-            btnDespeje.Size = new Size(94, 51);
+            btnDespeje.Size = new Size(164, 29);
             btnDespeje.TabIndex = 14;
             btnDespeje.Text = "auto despeje";
             btnDespeje.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             // btnLimpiar
             // 
             btnLimpiar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnLimpiar.Location = new Point(96, 412);
+            btnLimpiar.Location = new Point(83, 452);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(133, 29);
             btnLimpiar.TabIndex = 12;
@@ -126,7 +126,7 @@
             // btnProceso
             // 
             btnProceso.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnProceso.Location = new Point(96, 377);
+            btnProceso.Location = new Point(83, 409);
             btnProceso.Name = "btnProceso";
             btnProceso.Size = new Size(133, 29);
             btnProceso.TabIndex = 11;
@@ -137,7 +137,7 @@
             // btnCalcular
             // 
             btnCalcular.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            btnCalcular.Location = new Point(96, 342);
+            btnCalcular.Location = new Point(83, 366);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(133, 29);
             btnCalcular.TabIndex = 10;
@@ -148,7 +148,7 @@
             // txtMaxIter
             // 
             txtMaxIter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtMaxIter.Location = new Point(22, 295);
+            txtMaxIter.Location = new Point(22, 312);
             txtMaxIter.Name = "txtMaxIter";
             txtMaxIter.Size = new Size(164, 27);
             txtMaxIter.TabIndex = 9;
@@ -156,7 +156,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(22, 272);
+            label1.Location = new Point(22, 289);
             label1.Name = "label1";
             label1.Size = new Size(116, 20);
             label1.TabIndex = 8;
@@ -164,14 +164,14 @@
             // 
             // txtEpsilon
             // 
-            txtEpsilon.Location = new Point(153, 223);
+            txtEpsilon.Location = new Point(169, 238);
             txtEpsilon.Name = "txtEpsilon";
             txtEpsilon.Size = new Size(125, 27);
             txtEpsilon.TabIndex = 7;
             // 
             // txtX0
             // 
-            txtX0.Location = new Point(22, 223);
+            txtX0.Location = new Point(22, 238);
             txtX0.Name = "txtX0";
             txtX0.Size = new Size(125, 27);
             txtX0.TabIndex = 6;
@@ -179,7 +179,7 @@
             // txtEpsilo
             // 
             txtEpsilo.AutoSize = true;
-            txtEpsilo.Location = new Point(153, 200);
+            txtEpsilo.Location = new Point(169, 215);
             txtEpsilo.Name = "txtEpsilo";
             txtEpsilo.Size = new Size(28, 20);
             txtEpsilo.TabIndex = 5;
@@ -188,7 +188,7 @@
             // txtXo
             // 
             txtXo.AutoSize = true;
-            txtXo.Location = new Point(22, 200);
+            txtXo.Location = new Point(22, 215);
             txtXo.Name = "txtXo";
             txtXo.Size = new Size(27, 20);
             txtXo.TabIndex = 4;
@@ -197,7 +197,7 @@
             // txtDespeje
             // 
             txtDespeje.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtDespeje.Location = new Point(22, 146);
+            txtDespeje.Location = new Point(22, 163);
             txtDespeje.Name = "txtDespeje";
             txtDespeje.Size = new Size(164, 27);
             txtDespeje.TabIndex = 3;
@@ -205,7 +205,7 @@
             // lblDespeje
             // 
             lblDespeje.AutoSize = true;
-            lblDespeje.Location = new Point(22, 123);
+            lblDespeje.Location = new Point(22, 140);
             lblDespeje.Name = "lblDespeje";
             lblDespeje.Size = new Size(122, 20);
             lblDespeje.TabIndex = 2;
@@ -252,6 +252,7 @@
             plotView1.Location = new Point(0, 0);
             plotView1.Name = "plotView1";
             plotView1.PanCursor = Cursors.Hand;
+            plotView1.RightToLeft = RightToLeft.No;
             plotView1.Size = new Size(573, 348);
             plotView1.TabIndex = 0;
             plotView1.Text = "plotView1";

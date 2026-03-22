@@ -100,6 +100,7 @@
             btnAnterior.TabIndex = 0;
             btnAnterior.Text = "← Anterior";
             btnAnterior.UseVisualStyleBackColor = true;
+            btnAnterior.Click += btnAnterior_Click;
             // 
             // btnCerrar
             // 
@@ -110,6 +111,7 @@
             btnCerrar.TabIndex = 1;
             btnCerrar.Text = "Cerrar";
             btnCerrar.UseVisualStyleBackColor = true;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // btnSiguiente
             // 
@@ -120,6 +122,7 @@
             btnSiguiente.TabIndex = 2;
             btnSiguiente.Text = "Siguiente →";
             btnSiguiente.UseVisualStyleBackColor = true;
+            btnSiguiente.Click += btnSiguiente_Click;
             // 
             // lblContadorPaso
             // 

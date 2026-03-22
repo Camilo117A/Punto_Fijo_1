@@ -71,12 +71,17 @@ namespace Punto_Fijo_1.modelo
                 double xi = X0;
                 double gxi = EvaluarGx(xi);
 
+                // Error de i=0: |g(x0) - x0| / g(x0) × 100
+                double errorCero = gxi != 0
+                    ? Math.Abs((gxi - xi) / gxi) * 100
+                    : Math.Abs(gxi - xi) * 100;
+
                 Iteraciones.Add(new IteracionData
                 {
                     Iteracion = 0,
                     Xi = xi,
                     Gxi = gxi,
-                    Error = 0,
+                    Error = errorCero,
                     Convergio = false
                 });
 
