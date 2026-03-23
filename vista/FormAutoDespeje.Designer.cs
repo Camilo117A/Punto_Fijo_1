@@ -39,7 +39,7 @@
             lblTitFuncion = new Label();
             lblDescripcion = new Label();
             listViewCandidatos = new ListView();
-            colGx = new ColumnHeader();
+            colGx = new ColumnHeader("(ninguna)");
             colEstado = new ColumnHeader();
             colDescripcion = new ColumnHeader();
             lblTitCandidatos = new Label();
@@ -78,28 +78,31 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(192, 57, 43);
             btnCancelar.Location = new Point(44, 458);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(156, 29);
             btnCancelar.TabIndex = 7;
             btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
             // btnUsarDespeje
             // 
             btnUsarDespeje.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnUsarDespeje.BackColor = Color.SeaGreen;
             btnUsarDespeje.Location = new Point(44, 410);
             btnUsarDespeje.Name = "btnUsarDespeje";
             btnUsarDespeje.Size = new Size(156, 29);
             btnUsarDespeje.TabIndex = 6;
             btnUsarDespeje.Text = "Usar este despeje";
-            btnUsarDespeje.UseVisualStyleBackColor = true;
+            btnUsarDespeje.UseVisualStyleBackColor = false;
             btnUsarDespeje.Click += btnUsarDespeje_Click;
             // 
             // rtbPreview
             // 
             rtbPreview.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            rtbPreview.ForeColor = SystemColors.ButtonFace;
             rtbPreview.Location = new Point(24, 205);
             rtbPreview.Name = "rtbPreview";
             rtbPreview.ReadOnly = true;
@@ -110,6 +113,7 @@
             // lblTitPreview
             // 
             lblTitPreview.AutoSize = true;
+            lblTitPreview.ForeColor = SystemColors.HotTrack;
             lblTitPreview.Location = new Point(24, 182);
             lblTitPreview.Name = "lblTitPreview";
             lblTitPreview.Size = new Size(139, 20);
@@ -120,6 +124,7 @@
             // 
             lblMejorGx.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblMejorGx.AutoSize = true;
+            lblMejorGx.ForeColor = SystemColors.GrayText;
             lblMejorGx.Location = new Point(24, 134);
             lblMejorGx.Name = "lblMejorGx";
             lblMejorGx.Size = new Size(45, 20);
@@ -129,6 +134,7 @@
             // lblTitMejor
             // 
             lblTitMejor.AutoSize = true;
+            lblTitMejor.ForeColor = SystemColors.HotTrack;
             lblTitMejor.Location = new Point(24, 103);
             lblTitMejor.Name = "lblTitMejor";
             lblTitMejor.Size = new Size(142, 20);
@@ -139,6 +145,7 @@
             // 
             lblFuncionIngresada.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblFuncionIngresada.AutoSize = true;
+            lblFuncionIngresada.ForeColor = SystemColors.GrayText;
             lblFuncionIngresada.Location = new Point(24, 55);
             lblFuncionIngresada.Name = "lblFuncionIngresada";
             lblFuncionIngresada.Size = new Size(45, 20);
@@ -148,6 +155,7 @@
             // lblTitFuncion
             // 
             lblTitFuncion.AutoSize = true;
+            lblTitFuncion.ForeColor = SystemColors.HotTrack;
             lblTitFuncion.Location = new Point(24, 26);
             lblTitFuncion.Name = "lblTitFuncion";
             lblTitFuncion.Size = new Size(103, 20);
@@ -158,6 +166,7 @@
             // 
             lblDescripcion.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblDescripcion.AutoSize = true;
+            lblDescripcion.BackColor = SystemColors.Control;
             lblDescripcion.Location = new Point(18, 415);
             lblDescripcion.Name = "lblDescripcion";
             lblDescripcion.Size = new Size(39, 20);
@@ -167,7 +176,9 @@
             // listViewCandidatos
             // 
             listViewCandidatos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            listViewCandidatos.BackColor = SystemColors.MenuBar;
             listViewCandidatos.Columns.AddRange(new ColumnHeader[] { colGx, colEstado, colDescripcion });
+            listViewCandidatos.ForeColor = SystemColors.HotTrack;
             listViewCandidatos.FullRowSelect = true;
             listViewCandidatos.Location = new Point(18, 55);
             listViewCandidatos.Name = "listViewCandidatos";
@@ -196,6 +207,7 @@
             // lblTitCandidatos
             // 
             lblTitCandidatos.AutoSize = true;
+            lblTitCandidatos.ForeColor = SystemColors.HotTrack;
             lblTitCandidatos.Location = new Point(18, 26);
             lblTitCandidatos.Name = "lblTitCandidatos";
             lblTitCandidatos.Size = new Size(161, 20);
@@ -206,6 +218,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Info;
             ClientSize = new Size(885, 535);
             Controls.Add(splitContainer1);
             MinimumSize = new Size(580, 400);

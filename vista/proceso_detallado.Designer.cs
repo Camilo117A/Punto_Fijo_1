@@ -32,10 +32,10 @@
             lblTituloPaso = new Label();
             rtbPaso = new RichTextBox();
             panelBotones = new Panel();
-            btnAnterior = new Button();
-            btnCerrar = new Button();
-            btnSiguiente = new Button();
             lblContadorPaso = new Label();
+            btnSiguiente = new Button();
+            btnCerrar = new Button();
+            btnAnterior = new Button();
             tableLayoutPanel1.SuspendLayout();
             panelBotones.SuspendLayout();
             SuspendLayout();
@@ -60,7 +60,9 @@
             // 
             // lblTituloPaso
             // 
+            lblTituloPaso.BackColor = SystemColors.Info;
             lblTituloPaso.Dock = DockStyle.Fill;
+            lblTituloPaso.ForeColor = SystemColors.MenuHighlight;
             lblTituloPaso.Location = new Point(3, 0);
             lblTituloPaso.Name = "lblTituloPaso";
             lblTituloPaso.Size = new Size(794, 45);
@@ -70,6 +72,7 @@
             // 
             // rtbPaso
             // 
+            rtbPaso.BackColor = SystemColors.Window;
             rtbPaso.Dock = DockStyle.Fill;
             rtbPaso.Location = new Point(3, 48);
             rtbPaso.Name = "rtbPaso";
@@ -81,6 +84,7 @@
             // 
             // panelBotones
             // 
+            panelBotones.BackColor = SystemColors.Info;
             panelBotones.Controls.Add(lblContadorPaso);
             panelBotones.Controls.Add(btnSiguiente);
             panelBotones.Controls.Add(btnCerrar);
@@ -91,43 +95,11 @@
             panelBotones.Size = new Size(794, 64);
             panelBotones.TabIndex = 2;
             // 
-            // btnAnterior
-            // 
-            btnAnterior.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAnterior.Location = new Point(9, 15);
-            btnAnterior.Name = "btnAnterior";
-            btnAnterior.Size = new Size(94, 29);
-            btnAnterior.TabIndex = 0;
-            btnAnterior.Text = "← Anterior";
-            btnAnterior.UseVisualStyleBackColor = true;
-            btnAnterior.Click += btnAnterior_Click;
-            // 
-            // btnCerrar
-            // 
-            btnCerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnCerrar.Location = new Point(191, 26);
-            btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(94, 29);
-            btnCerrar.TabIndex = 1;
-            btnCerrar.Text = "Cerrar";
-            btnCerrar.UseVisualStyleBackColor = true;
-            btnCerrar.Click += btnCerrar_Click;
-            // 
-            // btnSiguiente
-            // 
-            btnSiguiente.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSiguiente.Location = new Point(683, 15);
-            btnSiguiente.Name = "btnSiguiente";
-            btnSiguiente.Size = new Size(102, 29);
-            btnSiguiente.TabIndex = 2;
-            btnSiguiente.Text = "Siguiente →";
-            btnSiguiente.UseVisualStyleBackColor = true;
-            btnSiguiente.Click += btnSiguiente_Click;
-            // 
             // lblContadorPaso
             // 
             lblContadorPaso.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblContadorPaso.AutoSize = true;
+            lblContadorPaso.BackColor = SystemColors.GrayText;
             lblContadorPaso.Location = new Point(349, 14);
             lblContadorPaso.Name = "lblContadorPaso";
             lblContadorPaso.Size = new Size(87, 20);
@@ -135,10 +107,50 @@
             lblContadorPaso.Text = "Paso 1 de N";
             lblContadorPaso.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnSiguiente
+            // 
+            btnSiguiente.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSiguiente.BackColor = SystemColors.Highlight;
+            btnSiguiente.ForeColor = SystemColors.HighlightText;
+            btnSiguiente.Location = new Point(683, 15);
+            btnSiguiente.Name = "btnSiguiente";
+            btnSiguiente.Size = new Size(102, 29);
+            btnSiguiente.TabIndex = 2;
+            btnSiguiente.Text = "Siguiente →";
+            btnSiguiente.UseVisualStyleBackColor = false;
+            btnSiguiente.Click += btnSiguiente_Click;
+            // 
+            // btnCerrar
+            // 
+            btnCerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnCerrar.BackColor = SystemColors.WindowFrame;
+            btnCerrar.ForeColor = SystemColors.Window;
+            btnCerrar.Location = new Point(191, 26);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(94, 29);
+            btnCerrar.TabIndex = 1;
+            btnCerrar.Text = "Cerrar";
+            btnCerrar.UseVisualStyleBackColor = false;
+            btnCerrar.Click += btnCerrar_Click;
+            // 
+            // btnAnterior
+            // 
+            btnAnterior.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnAnterior.BackColor = SystemColors.Highlight;
+            btnAnterior.ForeColor = SystemColors.HighlightText;
+            btnAnterior.Location = new Point(9, 15);
+            btnAnterior.Name = "btnAnterior";
+            btnAnterior.Size = new Size(94, 29);
+            btnAnterior.TabIndex = 0;
+            btnAnterior.Text = "← Anterior";
+            btnAnterior.UseVisualStyleBackColor = false;
+            btnAnterior.Click += btnAnterior_Click;
+            // 
             // proceso_detallado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Info;
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
             MinimumSize = new Size(400, 380);
